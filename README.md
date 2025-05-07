@@ -5,9 +5,9 @@
   <br />
 </p>
 
-# Amplitude-{LanguageName}
+# AmplitudeUnified-Swift
 
-This is Amplitude's latest version of the {LanguageName} SDK.
+This is Amplitude's latest version of the Unified SDK for Swift.
 
 ## Need Help?
 If you have any issues using our SDK, feel free to [create a GitHub issue](https://github.com/amplitude/Amplitude-SDK-Template/issues/new) or submit a request on [Amplitude Help](https://help.amplitude.com/hc/en-us/requests/new).
@@ -45,4 +45,3 @@ If you have any issues using our SDK, feel free to [create a GitHub issue](https
 - Create a .github/ISSUE_TEMPLATE folder with the following files
 - Add a LICENSE file
 - Edit the README.md as necessary
-- Create a PR with these files and have someone review (This makes sure we have the proper branch protection rules)

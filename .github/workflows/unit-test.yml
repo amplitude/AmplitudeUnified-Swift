@@ -1,0 +1,101 @@
+name: Unit Test
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_call:
+
+jobs:
+  unit-test:
+    name: Unit ${{ matrix.platform }} - Xcode ${{ matrix.xcode }} - OS ${{ matrix.test-destination-os }}
+    runs-on: ${{ matrix.runs-on }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runs-on: macos-13
+            platform: iOS
+            xcode: 15.2
+            device: "iPhone 15"
+            test-destination-os: latest
+
+          - runs-on: macos-13
+            platform: iOS
+            xcode: 15.0.1
+            test-destination-os: 17.2
+            device: "iPhone 14"
+          
+          - runs-on: macos-13
+            platform: macOS
+            xcode: 15.2
+            test-destination-os: latest
+
+          - runs-on: macos-13
+            platform: tvOS
+            xcode: 15.2
+            test-destination-os: latest
+            device: "Apple TV"
+
+          - runs-on: macos-13
+            platform: watchOS
+            xcode: 15.2
+            test-destination-os: latest
+            device: "Apple Watch Series 8 (41mm)"
+
+          - runs-on: macos-15
+            platform: visionOS
+            xcode: 16.0
+            test-destination-os: latest
+            device: "Apple Vision Pro"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set Xcode ${{ matrix.xcode }}
+        run: |
+          sudo xcode-select -switch /Applications/Xcode_${{ matrix.xcode }}.app
+      - name: List Simulators
+        run: |
+          xcrun simctl list
+      - name: List Project Configuration
+        run: |
+          xcodebuild -list
+      - name: ${{ matrix.platform }} Tests
+        run: |
+          case "${{ matrix.platform }}" in
+            iOS)
+              xcodebuild test \
+                -scheme AmplitudeUnified \
+                -sdk iphonesimulator \
+                -destination 'platform=iOS Simulator,OS=${{ matrix.test-destination-os }},name=${{ matrix.device }}'
+              ;;
+            macOS)
+              xcodebuild test \
+                -scheme AmplitudeUnified \
+                -sdk macosx \
+                -destination 'platform=macosx,OS=${{ matrix.test-destination-os }}'
+              ;;
+            tvOS)
+              xcodebuild \
+                -scheme AmplitudeUnified \
+                -sdk appletvsimulator \
+                -destination 'platform=tvOS Simulator,OS=${{ matrix.test-destination-os }},name=${{ matrix.device }}' \
+                test
+              ;;
+            watchOS)
+              xcodebuild \
+                -scheme AmplitudeUnified \
+                -sdk watchsimulator \
+                -destination 'platform=watchOS Simulator,OS=${{ matrix.test-destination-os }},name=${{ matrix.device }}' \
+                test
+              ;;
+            visionOS)
+              xcodebuild \
+                -scheme AmplitudeUnified \
+                -sdk xrsimulator \
+                -destination 'platform=visionOS Simulator,OS=${{ matrix.test-destination-os }},name=${{ matrix.device }}' \
+                test
+              ;;
+          esac
