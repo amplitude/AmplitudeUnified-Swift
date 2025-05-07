@@ -27,7 +27,7 @@ jobs:
 
   release:
     name: Release
-    runs-on: macos-15
+    runs-on: macos-14
     needs: [authorize, run-tests]
     steps:
       - name: Checkout
