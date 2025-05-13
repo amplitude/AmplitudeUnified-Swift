@@ -31,6 +31,7 @@ public extension Amplitude {
                                            logger: logger))
             add(plugin: SessionReplayPlugin(config: sessionReplayConfig))
             add(plugin: ExperimentPlugin(config: experimentConfig))
+            add(plugin: UnifiedSDKPlugin())
         }
     #else
         convenience init(
@@ -47,6 +48,7 @@ public extension Amplitude {
                                            analyticsConfig: analyticsConfig,
                                            logger: logger))
             add(plugin: ExperimentPlugin(config: experimentConfig))
+            add(plugin: UnifiedSDKPlugin())
         }
     #endif
 }
