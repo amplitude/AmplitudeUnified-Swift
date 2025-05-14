@@ -7,7 +7,12 @@
 
 @_exported import AmplitudeCore
 @_exported import AmplitudeSwift
+
+#if canImport(AmplitudeExperiment)
+@_exported import AmplitudeExperiment
+#else
 @_exported import Experiment
+#endif
 
 #if canImport(AmplitudeSessionReplay)
     @_exported import AmplitudeSessionReplay
