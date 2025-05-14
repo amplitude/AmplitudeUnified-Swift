@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.source                 = { :git => "https://github.com/amplitude/AmplitudeUnified-Swift.git", :tag => "v#{s.version}" }
 
   s.source_files           = 'Sources/AmplitudeUnified/**/*.{h,swift}'
-  s.resource_bundle        = { 'AmplitudeUnified': ['Sources/AmplitudeCore/PrivacyInfo.xcprivacy'] }
+  s.resource_bundle        = { 'AmplitudeUnified': ['Sources/AmplitudeUnified/PrivacyInfo.xcprivacy'] }
   s.swift_version          = '5.9'
 
   s.ios.deployment_target  = '13.0'
@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
   s.watchos.deployment_target  = '7.0'
   s.visionos.deployment_target = '1.0'
   
-  s.dependency 'AmplitudeExperiment', ' >= 1.9.1', '< 2.0.0'
+  s.dependency 'AmplitudeExperiment', '>= 1.9.1', '< 2.0.0'
   s.dependency 'AmplitudeSwift', '>= 1.13.0', '< 2.0.0'
 
   s.ios.dependency 'AmplitudeSessionReplay', '>= 0.4.0', '< 2.0.0'

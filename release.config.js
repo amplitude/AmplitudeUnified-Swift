@@ -31,11 +31,25 @@ module.exports = {
             ],
             "countMatches": true
           },
+          {
+            "files": ["sources/AmplitudeUnified/Constants.swift"],
+            "from": "unifiedSDKVersion: String = \".*\"",
+            "to": "unifiedSDKVersion: String = \"${nextRelease.version}\"",
+            "results": [
+              {
+                "file": "sources/AmplitudeUnified/Constants.swift",
+                "hasChanged": true,
+                "numMatches": 1,
+                "numReplacements": 1
+              }
+            ],
+            "countMatches": true
+          }
         ]
       }
     ],
     ["@semantic-release/git", {
-      "assets": ["AmplitudeCore.podspec", "CHANGELOG.md"],
+      "assets": ["AmplitudeCore.podspec", "CHANGELOG.md", "sources/AmplitudeUnified/Constants.swift"],
       "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
     }],
       ["@semantic-release/exec", {
