@@ -6,7 +6,12 @@
 //
 
 import Foundation
-import Experiment
+
+#if canImport(AmplitudeExperiment)
+@_exported import AmplitudeExperiment
+#else
+@_exported import Experiment
+#endif
 
 #if canImport(AmplitudeSessionReplay)
 import AmplitudeSessionReplay
