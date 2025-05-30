@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
   s.watchos.deployment_target  = '7.0'
   s.visionos.deployment_target = '1.0'
   
-  s.dependency 'AmplitudeExperiment', '>= 1.18.0', '< 2.0.0'
+  s.dependency 'AmplitudeExperiment', '>= 1.18.1', '< 2.0.0'
   s.dependency 'AmplitudeSwift', '>= 1.13.4', '< 2.0.0'
 
   s.ios.dependency 'AmplitudeSessionReplay', '>= 0.4.3', '< 2.0.0'
