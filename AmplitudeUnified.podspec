@@ -20,9 +20,9 @@ Pod::Spec.new do |s|
   s.visionos.deployment_target = '1.0'
   
   s.dependency 'AmplitudeExperiment', '>= 1.18.0', '< 2.0.0'
-  s.dependency 'AmplitudeSwift', '>= 1.13.0', '< 2.0.0'
+  s.dependency 'AmplitudeSwift', '>= 1.13.4', '< 2.0.0'
 
-  s.ios.dependency 'AmplitudeSessionReplay', '>= 0.4.0', '< 2.0.0'
+  s.ios.dependency 'AmplitudeSessionReplay', '>= 0.4.3', '< 2.0.0'
 
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
 end

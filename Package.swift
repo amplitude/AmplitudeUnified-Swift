@@ -19,8 +19,8 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/amplitude/experiment-ios-client.git", from: "1.18.0"),
-        .package(url: "https://github.com/amplitude/AmplitudeSessionReplay-iOS.git", from: "0.4.0"),
-        .package(url: "https://github.com/amplitude/Amplitude-Swift.git", from: "1.13.0"),
+        .package(url: "https://github.com/amplitude/AmplitudeSessionReplay-iOS.git", from: "0.4.3"),
+        .package(url: "https://github.com/amplitude/Amplitude-Swift.git", from: "1.13.4"),
     ],
     targets: [
         .target(
