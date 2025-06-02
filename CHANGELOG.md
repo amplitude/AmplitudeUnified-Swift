@@ -1,3 +1,13 @@
+## [0.0.2](https://github.com/amplitude/AmplitudeUnified-Swift/compare/v0.0.1...v0.0.2) (2025-06-02)
+
+
+### Bug Fixes
+
+* allow warnings on pod trunk push ([dfee1ae](https://github.com/amplitude/AmplitudeUnified-Swift/commit/dfee1ae9ac2f3a5d5dfc01510beb06d1d9c8837e))
+* improve objc interface ([#3](https://github.com/amplitude/AmplitudeUnified-Swift/issues/3)) ([a042934](https://github.com/amplitude/AmplitudeUnified-Swift/commit/a042934c45c7ab2b9a7052503793c59f62306560))
+* point to latest experiment ([#4](https://github.com/amplitude/AmplitudeUnified-Swift/issues/4)) ([c8d1575](https://github.com/amplitude/AmplitudeUnified-Swift/commit/c8d15758bfcbd85932fcd8035bea3dffa2077b8d))
+* use correct experiment import for cocoapods ([#5](https://github.com/amplitude/AmplitudeUnified-Swift/issues/5)) ([cb777fa](https://github.com/amplitude/AmplitudeUnified-Swift/commit/cb777faec48cf023782ab42a5582b536afc8b0b8))
+
 ## [0.0.1](https://github.com/amplitude/AmplitudeUnified-Swift/compare/v0.0.0...v0.0.1) (2025-05-14)
 
 
