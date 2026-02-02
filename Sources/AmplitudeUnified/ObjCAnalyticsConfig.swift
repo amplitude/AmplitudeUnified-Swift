@@ -51,7 +51,7 @@ extension ObjCConfiguration {
         if let logger {
             loggerProvider = logger
         }
-        logLevel = analyticsConfig.logLevel
+        logLevel = ObjCLogLevel(analyticsConfig.logLevel)
         minIdLength = analyticsConfig.minIDLength
         callback = analyticsConfig.callback
         partnerId = analyticsConfig.partnerID
