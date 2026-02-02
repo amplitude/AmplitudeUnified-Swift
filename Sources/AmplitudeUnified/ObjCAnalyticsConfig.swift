@@ -15,7 +15,7 @@ public class ObjCAnalyticsConfig: NSObject {
 
     public var flushQueueSize = Configuration.Defaults.flushQueueSize
     public var flushIntervalMillis = Configuration.Defaults.flushIntervalMillis
-    public var logLevel = Configuration.Defaults.logLevel
+    public var logLevel = ObjCLogLevel.WARN
     public var minIDLength = -1
     public var partnerID: String?
     public var callback: ObjCEventCallback?
