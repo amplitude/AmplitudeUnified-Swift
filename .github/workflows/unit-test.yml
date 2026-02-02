@@ -16,39 +16,39 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - runs-on: macos-13
+          - runs-on: macos-15
             platform: iOS
-            xcode: 15.2
-            device: "iPhone 15"
+            xcode: 16.4
+            device: "iPhone 16"
             test-destination-os: latest
 
-          - runs-on: macos-13
+          - runs-on: macos-15
             platform: iOS
-            xcode: 15.0.1
-            test-destination-os: 17.2
-            device: "iPhone 14"
+            xcode: 16.4
+            test-destination-os: 18.5
+            device: "iPhone 16"
           
-          - runs-on: macos-13
+          - runs-on: macos-15
             platform: macOS
-            xcode: 15.2
+            xcode: 16.4
             test-destination-os: latest
 
-          - runs-on: macos-13
+          - runs-on: macos-15
             platform: tvOS
-            xcode: 15.2
+            xcode: 16.4
             test-destination-os: latest
             device: "Apple TV"
 
-          - runs-on: macos-13
+          - runs-on: macos-15
             platform: watchOS
-            xcode: 15.2
+            xcode: 16.4
             test-destination-os: latest
-            device: "Apple Watch Series 8 (41mm)"
+            device: "Apple Watch Series 10 (42mm)"
 
           - runs-on: macos-15
             platform: visionOS
-            xcode: 16.0
-            test-destination-os: latest
+            xcode: 16.4
+            test-destination-os: 2.5
             device: "Apple Vision Pro"
     steps:
       - name: Checkout
@@ -75,7 +75,7 @@ jobs:
               xcodebuild test \
                 -scheme AmplitudeUnified \
                 -sdk macosx \
-                -destination 'platform=macosx,OS=${{ matrix.test-destination-os }}'
+                -destination 'platform=macOS,OS=${{ matrix.test-destination-os }}'
               ;;
             tvOS)
               xcodebuild \
