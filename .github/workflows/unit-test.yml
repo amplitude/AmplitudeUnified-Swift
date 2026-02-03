@@ -31,7 +31,6 @@ jobs:
           - runs-on: macos-15
             platform: macOS
             xcode: 16.4
-            test-destination-os: latest
 
           - runs-on: macos-15
             platform: tvOS
@@ -75,7 +74,7 @@ jobs:
               xcodebuild test \
                 -scheme AmplitudeUnified \
                 -sdk macosx \
-                -destination 'platform=macOS,OS=${{ matrix.test-destination-os }}'
+                -destination 'platform=macOS'
               ;;
             tvOS)
               xcodebuild \
