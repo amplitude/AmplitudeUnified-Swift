@@ -1,3 +1,11 @@
+## [0.0.3](https://github.com/amplitude/AmplitudeUnified-Swift/compare/v0.0.2...v0.0.3) (2026-02-03)
+
+
+### Bug Fixes
+
+* update github runners ([#10](https://github.com/amplitude/AmplitudeUnified-Swift/issues/10)) ([0bff3fc](https://github.com/amplitude/AmplitudeUnified-Swift/commit/0bff3fc1dc2ca76eaef69511455d25ced779d7a1))
+* use correct default for ObjC logLevel ([#9](https://github.com/amplitude/AmplitudeUnified-Swift/issues/9)) ([b5b8387](https://github.com/amplitude/AmplitudeUnified-Swift/commit/b5b8387eb7892cf2bdfad358c78f0254278e5b82))
+
 ## [0.0.2](https://github.com/amplitude/AmplitudeUnified-Swift/compare/v0.0.1...v0.0.2) (2025-06-02)
 
 
