@@ -20,7 +20,7 @@ https://github.com/amplitude/AmplitudeUnified-Swift
 **CocoaPods:** Add to your `Podfile` and run `pod install`:
 
 ```ruby
-pod 'AmplitudeUnified', '~> 0.0.0'
+pod 'AmplitudeUnified', '~> 0.0'
 ```
 
 ## Basic usage
