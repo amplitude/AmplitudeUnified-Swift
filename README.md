@@ -5,43 +5,40 @@
   <br />
 </p>
 
-# AmplitudeUnified-Swift
+# Unified SDK for Swift
 
-This is Amplitude's latest version of the Unified SDK for Swift.
+A single interface for Amplitude Analytics, Experiment, and Session Replay (iOS only). For full documentation, see [Unified SDK for Swift](https://amplitude.com/docs/sdks/analytics/ios/unified-sdk).
 
-## Need Help?
-If you have any issues using our SDK, feel free to [create a GitHub issue](https://github.com/amplitude/Amplitude-SDK-Template/issues/new) or submit a request on [Amplitude Help](https://help.amplitude.com/hc/en-us/requests/new).
+## Setup
 
+**Swift Package Manager:** In Xcode, **File** → **Swift Package Manager** → **Add Package Dependency**, then add:
 
-# Template Usage
+```
+https://github.com/amplitude/AmplitudeUnified-Swift
+```
 
-## Creating a new repository 
-- Go to [create a new repo page](https://github.com/organizations/amplitude/repositories/new)
-- Name your repository as Amplitude-{language} (example: Amplitude-TypeScript)
-- Provide a description like “{Language} Amplitude Analytics SDK”
-- Specify Internal as the type of repository. We will make it Public later
-- Add a README.md file
-- Use the suggested .gitignore template for the language you are using
+**CocoaPods:** Add to your `Podfile` and run `pod install`:
 
-## Securing the repository 
-- Go to the Settings page in your repository
-- Go to Branches
-- Add a branch protection rule called “main” for the main branch
-  - Check “Require a pull request before merging”
-  - Check “Require approvals”
-  - Check “Dismiss stale pull request approvals when new commits are pushed”
-  - If there are any status checks, check “Require status checks to pass before merging”
+```ruby
+pod 'AmplitudeUnified', '~> 0.0.0'
+```
 
-## Adding team members 
-- Go to Settings page in your repository
-- Go to Collaborators and teams
-- In Manage Access section, click on Add teams
-- Search by the name of the team, and click Add teams  
+## Basic usage
 
-## Applying templates
-- Clone the new repository
-- Create a branch (You do not have to preface the branch name with the JIRA ticket number)
-- Create .github/pull_request_template.md using this template
-- Create a .github/ISSUE_TEMPLATE folder with the following files
-- Add a LICENSE file
-- Edit the README.md as necessary
+```swift
+let amplitude = Amplitude(apiKey: "YOUR_API_KEY")
+
+amplitude.track(eventType: "Button Clicked", eventProperties: ["button_id": "sign_up"])
+
+let identify = Identify()
+identify.set(property: "plan", value: "premium")
+amplitude.identify(identify: identify)
+
+amplitude.setUserId(userId: "user@example.com")
+```
+
+For configuration, Experiment, Session Replay, identity management, and more, see the [Amplitude documentation](https://amplitude.com/docs/sdks/analytics/ios/unified-sdk).
+
+## Support
+
+- [Documentation](https://amplitude.com/docs/sdks/analytics/ios/unified-sdk) · [GitHub Issues](https://github.com/amplitude/AmplitudeUnified-Swift/issues) · [Contact Support](https://help.amplitude.com/hc/en-us/requests/new)
