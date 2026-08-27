@@ -65,13 +65,13 @@ public extension ObjCAmplitude {
     }
 #endif
 
-    @objc var experiment: ExperimentClient? {
-        return (self as? PluginHost)?.experiment
+    @objc(experiment) var objcExperiment: ExperimentClient? {
+        return experiment
     }
 
 #if canImport(AmplitudeSessionReplay)
-    @objc var sessionReplay: SessionReplay? {
-        return (self as? PluginHost)?.sessionReplay
+    @objc(sessionReplay) var objcSessionReplay: SessionReplay? {
+        return sessionReplay
     }
 #endif
 }
