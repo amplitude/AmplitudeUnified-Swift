@@ -14,7 +14,7 @@ module.exports = {
       "changelogFile": "CHANGELOG.md"
     }],
     [
-      "@google/semantic-release-replace-plugin",
+      "semantic-release-replace-plugin",
       {
         "replacements": [
           {
