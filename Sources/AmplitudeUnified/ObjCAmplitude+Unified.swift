@@ -24,7 +24,7 @@ public extension ObjCAmplitude {
     }
 
     @objc convenience init(apiKey: String, serverZone: AmplitudeCore.ServerZone) {
-        self.init(apiKey: apiKey, serverZone: Configuration.Defaults.serverZone, logger: nil)
+        self.init(apiKey: apiKey, serverZone: serverZone, logger: nil)
     }
 
 #if canImport(AmplitudeSessionReplay)
