@@ -1,3 +1,10 @@
+## [0.0.4](https://github.com/amplitude/AmplitudeUnified-Swift/compare/v0.0.3...v0.0.4) (2026-08-31)
+
+
+### Bug Fixes
+
+* remove redundant PluginHost cast ([#34](https://github.com/amplitude/AmplitudeUnified-Swift/issues/34)) ([e0d5ac3](https://github.com/amplitude/AmplitudeUnified-Swift/commit/e0d5ac3f2ed9f29a25bcb81a714d04897b46f6c1))
+
 ## [0.0.3](https://github.com/amplitude/AmplitudeUnified-Swift/compare/v0.0.2...v0.0.3) (2026-02-03)
 
 
