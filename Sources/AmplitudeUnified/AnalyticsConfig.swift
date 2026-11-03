@@ -12,6 +12,7 @@ import AmplitudeSwift
 public struct AnalyticsConfig {
     // MARK: Lifecycle
 
+    @_disfavoredOverload
     public init(
         flushQueueSize: Int = Configuration.Defaults.flushQueueSize,
         flushIntervalMillis: Int = Configuration.Defaults.flushIntervalMillis,
@@ -35,6 +36,71 @@ public struct AnalyticsConfig {
         migrateLegacyData: Bool = Configuration.Defaults.migrateLegacyData,
         enableAutoCaptureRemoteConfig: Bool = Configuration.Defaults.enableAutoCaptureRemoteConfig
     ) {
+        self.init(flushQueueSize: flushQueueSize,
+                  flushIntervalMillis: flushIntervalMillis,
+                  storageProvider: storageProvider,
+                  identifyStorageProvider: identifyStorageProvider,
+                  minIDLength: minIDLength,
+                  partnerID: partnerID,
+                  callback: callback,
+                  flushMaxRetries: flushMaxRetries,
+                  useBatch: useBatch,
+                  serverURL: serverURL,
+                  plan: plan,
+                  ingestionMetadata: ingestionMetadata,
+                  trackingOptions: trackingOptions,
+                  enableCoppaControl: enableCoppaControl,
+                  flushEventsOnClose: flushEventsOnClose,
+                  minTimeBetweenSessionsMillis: minTimeBetweenSessionsMillis,
+                  autocapture: autocapture,
+                  identifyBatchIntervalMillis: identifyBatchIntervalMillis,
+                  maxQueuedEventCount: maxQueuedEventCount,
+                  migrateLegacyData: migrateLegacyData,
+                  enableAutoCaptureRemoteConfig: enableAutoCaptureRemoteConfig,
+                  optOut: Configuration.Defaults.optOut)
+    }
+
+    public init(
+        flushQueueSize: Int = Configuration.Defaults.flushQueueSize,
+        flushIntervalMillis: Int = Configuration.Defaults.flushIntervalMillis,
+        storageProvider: (any Storage)? = nil,
+        identifyStorageProvider: (any Storage)? = nil,
+        minIDLength: Int? = nil,
+        partnerID: String? = nil,
+        callback: EventCallback? = nil,
+        flushMaxRetries: Int = Configuration.Defaults.flushMaxRetries,
+        useBatch: Bool = Configuration.Defaults.useBatch,
+        serverURL: String? = nil,
+        plan: Plan? = nil,
+        ingestionMetadata: IngestionMetadata? = nil,
+        trackingOptions: TrackingOptions = Configuration.Defaults.trackingOptions,
+        enableCoppaControl: Bool = Configuration.Defaults.enableCoppaControl,
+        flushEventsOnClose: Bool = Configuration.Defaults.flushEventsOnClose,
+        minTimeBetweenSessionsMillis: Int = Configuration.Defaults.minTimeBetweenSessionsMillis,
+        autocapture: AutocaptureOptions = Configuration.Defaults.autocaptureOptions,
+        identifyBatchIntervalMillis: Int = Configuration.Defaults.identifyBatchIntervalMillis,
+        maxQueuedEventCount: Int = Configuration.Defaults.maxQueuedEventCount,
+        migrateLegacyData: Bool = Configuration.Defaults.migrateLegacyData,
+        enableAutoCaptureRemoteConfig: Bool = Configuration.Defaults.enableAutoCaptureRemoteConfig,
+        optOut: Bool = Configuration.Defaults.optOut,
+        logLevel: LogLevelEnum = Configuration.Defaults.logLevel,
+        offline: Bool? = false,
+        networkTrackingOptions: NetworkTrackingOptions = Configuration.Defaults.networkTrackingOptions,
+        interactionsOptions: InteractionsOptions = Configuration.Defaults.interactionsOptions,
+        enableDiagnostics: Bool = Configuration.Defaults.enableDiagnostics,
+        enableRequestBodyCompression: Bool = Configuration.Defaults.enableRequestBodyCompression,
+        userId: String? = nil,
+        deviceId: String? = nil
+    ) {
+        self.optOut = optOut
+        self.logLevel = logLevel
+        self.offline = offline
+        self.networkTrackingOptions = networkTrackingOptions
+        self.interactionsOptions = interactionsOptions
+        self.enableDiagnostics = enableDiagnostics
+        self.enableRequestBodyCompression = enableRequestBodyCompression
+        self.userId = userId
+        self.deviceId = deviceId
         self.flushQueueSize = flushQueueSize
         self.flushIntervalMillis = flushIntervalMillis
         self.storageProvider = storageProvider
@@ -59,6 +125,16 @@ public struct AnalyticsConfig {
     }
 
     // MARK: Public
+
+    public let optOut: Bool
+    public let logLevel: LogLevelEnum
+    public let offline: Bool?
+    public let networkTrackingOptions: NetworkTrackingOptions
+    public let interactionsOptions: InteractionsOptions
+    public let enableDiagnostics: Bool
+    public let enableRequestBodyCompression: Bool
+    public let userId: String?
+    public let deviceId: String?
 
     public let flushQueueSize: Int
     public let flushIntervalMillis: Int
@@ -89,14 +165,17 @@ extension Configuration {
         serverZone: AmplitudeCore.ServerZone,
         instanceName: String,
         analyticsConfig: AnalyticsConfig,
-        logger: any Logger
+        logger: any Logger,
+        httpClient: (any HttpClient)? = nil
     ) {
         self.init(apiKey: apiKey,
                   flushQueueSize: analyticsConfig.flushQueueSize,
                   flushIntervalMillis: analyticsConfig.flushIntervalMillis,
                   instanceName: instanceName,
+                  optOut: analyticsConfig.optOut,
                   storageProvider: analyticsConfig.storageProvider,
                   identifyStorageProvider: analyticsConfig.identifyStorageProvider,
+                  logLevel: analyticsConfig.logLevel,
                   loggerProvider: logger,
                   minIdLength: analyticsConfig.minIDLength,
                   partnerId: analyticsConfig.partnerID,
@@ -115,6 +194,14 @@ extension Configuration {
                   identifyBatchIntervalMillis: analyticsConfig.identifyBatchIntervalMillis,
                   maxQueuedEventCount: analyticsConfig.maxQueuedEventCount,
                   migrateLegacyData: analyticsConfig.migrateLegacyData,
-                  enableAutoCaptureRemoteConfig: analyticsConfig.enableAutoCaptureRemoteConfig)
+                  offline: analyticsConfig.offline,
+                  networkTrackingOptions: analyticsConfig.networkTrackingOptions,
+                  enableAutoCaptureRemoteConfig: analyticsConfig.enableAutoCaptureRemoteConfig,
+                  interactionsOptions: analyticsConfig.interactionsOptions,
+                  enableDiagnostics: analyticsConfig.enableDiagnostics,
+                  enableRequestBodyCompression: analyticsConfig.enableRequestBodyCompression,
+                  userId: analyticsConfig.userId,
+                  deviceId: analyticsConfig.deviceId,
+                  httpClient: httpClient)
     }
 }

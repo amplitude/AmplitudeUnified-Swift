@@ -30,9 +30,15 @@ public class ObjCAnalyticsConfig: NSObject {
     public var minTimeBetweenSessionsMillis = Configuration.Defaults.minTimeBetweenSessionsMillis
     public var identifyBatchIntervalMillis = Configuration.Defaults.identifyBatchIntervalMillis
     public var autocapture = ObjCAutocaptureOptions.default
-    public var migrateLegacyData = Configuration.Defaults.enableAutoCaptureRemoteConfig
+    public var migrateLegacyData = Configuration.Defaults.migrateLegacyData
     public var enableAutoCaptureRemoteConfig = Configuration.Defaults.enableAutoCaptureRemoteConfig
     public var networkTrackingOptions = ObjCNetworkTrackingOptions.defaultOptions()
+    public var optOut = Configuration.Defaults.optOut
+    public var offline: NSNumber? = false
+    public var interactionsOptions = ObjCInteractionsOptions()
+    public var enableRequestBodyCompression = Configuration.Defaults.enableRequestBodyCompression
+    public var userId: String?
+    public var deviceId: String?
 }
 
 extension ObjCConfiguration {
@@ -69,5 +75,11 @@ extension ObjCConfiguration {
         identifyBatchIntervalMillis = analyticsConfig.identifyBatchIntervalMillis
         migrateLegacyData = analyticsConfig.migrateLegacyData
         networkTrackingOptions = analyticsConfig.networkTrackingOptions
+        optOut = analyticsConfig.optOut
+        offline = analyticsConfig.offline
+        interactionsOptions = analyticsConfig.interactionsOptions
+        enableRequestBodyCompression = analyticsConfig.enableRequestBodyCompression
+        userId = analyticsConfig.userId
+        deviceId = analyticsConfig.deviceId
     }
 }

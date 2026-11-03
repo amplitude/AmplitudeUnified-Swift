@@ -29,11 +29,34 @@ public extension Amplitude {
             sessionReplayConfig: SessionReplayPlugin.Config = .init(),
             logger: any Logger = ConsoleLogger()
         ) {
+            self.init(apiKey: apiKey,
+                      serverZone: serverZone,
+                      instanceName: instanceName,
+                      analyticsConfig: analyticsConfig,
+                      experimentConfig: experimentConfig,
+                      sessionReplayConfig: sessionReplayConfig,
+                      logger: logger,
+                      httpClient: nil)
+        }
+
+        /// Uses the client for Analytics and shared Core requests, and Replay uploads with a compatible Replay SDK.
+        /// Experiment fetches use their own transport and are not routed through this client.
+        convenience init(
+            apiKey: String,
+            serverZone: AmplitudeCore.ServerZone = .US,
+            instanceName: String = Constants.Configuration.DEFAULT_INSTANCE,
+            analyticsConfig: AnalyticsConfig = .init(),
+            experimentConfig: ExperimentPlugin.Config = .init(),
+            sessionReplayConfig: SessionReplayPlugin.Config = .init(),
+            logger: any Logger = ConsoleLogger(),
+            httpClient: (any HttpClient)?
+        ) {
             self.init(configuration: .init(apiKey: apiKey,
                                            serverZone: serverZone,
                                            instanceName: instanceName,
                                            analyticsConfig: analyticsConfig,
-                                           logger: logger))
+                                           logger: logger,
+                                           httpClient: httpClient))
             add(plugin: SessionReplayPlugin(config: sessionReplayConfig))
             add(plugin: ExperimentPlugin(config: experimentConfig))
             add(plugin: UnifiedSDKPlugin())
@@ -47,11 +70,32 @@ public extension Amplitude {
             experimentConfig: ExperimentPlugin.Config = .init(),
             logger: any Logger = ConsoleLogger()
         ) {
+            self.init(apiKey: apiKey,
+                      serverZone: serverZone,
+                      instanceName: instanceName,
+                      analyticsConfig: analyticsConfig,
+                      experimentConfig: experimentConfig,
+                      logger: logger,
+                      httpClient: nil)
+        }
+
+        /// Uses the client for Analytics and shared Core requests, and Replay uploads with a compatible Replay SDK.
+        /// Experiment fetches use their own transport and are not routed through this client.
+        convenience init(
+            apiKey: String,
+            serverZone: AmplitudeCore.ServerZone = .US,
+            instanceName: String = Constants.Configuration.DEFAULT_INSTANCE,
+            analyticsConfig: AnalyticsConfig = .init(),
+            experimentConfig: ExperimentPlugin.Config = .init(),
+            logger: any Logger = ConsoleLogger(),
+            httpClient: (any HttpClient)?
+        ) {
             self.init(configuration: .init(apiKey: apiKey,
                                            serverZone: serverZone,
                                            instanceName: instanceName,
                                            analyticsConfig: analyticsConfig,
-                                           logger: logger))
+                                           logger: logger,
+                                           httpClient: httpClient))
             add(plugin: ExperimentPlugin(config: experimentConfig))
             add(plugin: UnifiedSDKPlugin())
         }
