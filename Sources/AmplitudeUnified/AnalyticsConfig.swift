@@ -12,54 +12,6 @@ import AmplitudeSwift
 public struct AnalyticsConfig {
     // MARK: Lifecycle
 
-    @_disfavoredOverload
-    public init(
-        flushQueueSize: Int = Configuration.Defaults.flushQueueSize,
-        flushIntervalMillis: Int = Configuration.Defaults.flushIntervalMillis,
-        storageProvider: (any Storage)? = nil,
-        identifyStorageProvider: (any Storage)? = nil,
-        minIDLength: Int? = nil,
-        partnerID: String? = nil,
-        callback: EventCallback? = nil,
-        flushMaxRetries: Int = Configuration.Defaults.flushMaxRetries,
-        useBatch: Bool = Configuration.Defaults.useBatch,
-        serverURL: String? = nil,
-        plan: Plan? = nil,
-        ingestionMetadata: IngestionMetadata? = nil,
-        trackingOptions: TrackingOptions = Configuration.Defaults.trackingOptions,
-        enableCoppaControl: Bool = Configuration.Defaults.enableCoppaControl,
-        flushEventsOnClose: Bool = Configuration.Defaults.flushEventsOnClose,
-        minTimeBetweenSessionsMillis: Int = Configuration.Defaults.minTimeBetweenSessionsMillis,
-        autocapture: AutocaptureOptions = Configuration.Defaults.autocaptureOptions,
-        identifyBatchIntervalMillis: Int = Configuration.Defaults.identifyBatchIntervalMillis,
-        maxQueuedEventCount: Int = Configuration.Defaults.maxQueuedEventCount,
-        migrateLegacyData: Bool = Configuration.Defaults.migrateLegacyData,
-        enableAutoCaptureRemoteConfig: Bool = Configuration.Defaults.enableAutoCaptureRemoteConfig
-    ) {
-        self.init(flushQueueSize: flushQueueSize,
-                  flushIntervalMillis: flushIntervalMillis,
-                  storageProvider: storageProvider,
-                  identifyStorageProvider: identifyStorageProvider,
-                  minIDLength: minIDLength,
-                  partnerID: partnerID,
-                  callback: callback,
-                  flushMaxRetries: flushMaxRetries,
-                  useBatch: useBatch,
-                  serverURL: serverURL,
-                  plan: plan,
-                  ingestionMetadata: ingestionMetadata,
-                  trackingOptions: trackingOptions,
-                  enableCoppaControl: enableCoppaControl,
-                  flushEventsOnClose: flushEventsOnClose,
-                  minTimeBetweenSessionsMillis: minTimeBetweenSessionsMillis,
-                  autocapture: autocapture,
-                  identifyBatchIntervalMillis: identifyBatchIntervalMillis,
-                  maxQueuedEventCount: maxQueuedEventCount,
-                  migrateLegacyData: migrateLegacyData,
-                  enableAutoCaptureRemoteConfig: enableAutoCaptureRemoteConfig,
-                  optOut: Configuration.Defaults.optOut)
-    }
-
     public init(
         flushQueueSize: Int = Configuration.Defaults.flushQueueSize,
         flushIntervalMillis: Int = Configuration.Defaults.flushIntervalMillis,
