@@ -52,8 +52,8 @@ module.exports = {
       "assets": ["AmplitudeUnified.podspec", "CHANGELOG.md", "sources/AmplitudeUnified/Constants.swift"],
       "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
     }],
-      ["@semantic-release/exec", {
+      ...(process.env.SKIP_COCOAPODS === "true" ? [] : [["@semantic-release/exec", {
         "publishCmd": "pod trunk push AmplitudeUnified.podspec --allow-warnings",
-      }],
+      }]]),
     ],
   }
