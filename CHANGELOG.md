@@ -1,3 +1,15 @@
+# [0.1.0](https://github.com/amplitude/AmplitudeUnified-Swift/compare/v0.0.4...v0.1.0) (2026-11-04)
+
+
+### Bug Fixes
+
+* **objc:** respect server zone in unified initializer ([#36](https://github.com/amplitude/AmplitudeUnified-Swift/issues/36)) ([b6bc7f9](https://github.com/amplitude/AmplitudeUnified-Swift/commit/b6bc7f9cc9426323918185eae724af61ce690d1b))
+
+
+### Features
+
+* expose shared HTTP client and remaining Analytics options ([#45](https://github.com/amplitude/AmplitudeUnified-Swift/issues/45)) ([5d074fb](https://github.com/amplitude/AmplitudeUnified-Swift/commit/5d074fb0951810ff0349e47001dc4fe3f45ba7d3))
+
 ## [0.0.4](https://github.com/amplitude/AmplitudeUnified-Swift/compare/v0.0.3...v0.0.4) (2026-08-31)
 
 
