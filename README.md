@@ -39,27 +39,6 @@ amplitude.setUserId(userId: "user@example.com")
 
 For configuration, Experiment, Session Replay, identity management, and more, see the [Amplitude documentation](https://amplitude.com/docs/sdks/analytics/ios/unified-sdk).
 
-## Custom HTTP clients and Analytics options
-
-Pass a Core `HttpClient` to the Swift initializer to control Analytics uploads and shared Core remote-config and diagnostics requests. Replay uploads also use this client when the installed Replay SDK supports shared HTTP clients. Experiment fetches use their own transport.
-
-```swift
-let amplitude = Amplitude(
-    apiKey: "YOUR_API_KEY",
-    analyticsConfig: .init(
-        optOut: false,
-        enableDiagnostics: false,
-        userId: "known-user-id",
-        deviceId: "known-device-id"
-    ),
-    httpClient: routingClient // Your implementation of AmplitudeCore.HttpClient
-)
-```
-
-`AnalyticsConfig` also exposes offline mode, log level, network tracking options, interaction options, and custom-endpoint request compression. Initial identity and opt-out are applied before Analytics starts. Existing initializers continue to use the default transport.
-
-The Objective-C `AMPAnalyticsConfig` exposes opt-out, offline mode, interaction options, compression, and initial identity. Core's async Swift `HttpClient` is not exposed through the Objective-C configuration API.
-
 ## Support
 
 - [Documentation](https://amplitude.com/docs/sdks/analytics/ios/unified-sdk) · [GitHub Issues](https://github.com/amplitude/AmplitudeUnified-Swift/issues) · [Contact Support](https://help.amplitude.com/hc/en-us/requests/new)
