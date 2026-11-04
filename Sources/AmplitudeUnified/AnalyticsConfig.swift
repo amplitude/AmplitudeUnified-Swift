@@ -33,8 +33,24 @@ public struct AnalyticsConfig {
         identifyBatchIntervalMillis: Int = Configuration.Defaults.identifyBatchIntervalMillis,
         maxQueuedEventCount: Int = Configuration.Defaults.maxQueuedEventCount,
         migrateLegacyData: Bool = Configuration.Defaults.migrateLegacyData,
-        enableAutoCaptureRemoteConfig: Bool = Configuration.Defaults.enableAutoCaptureRemoteConfig
+        enableAutoCaptureRemoteConfig: Bool = Configuration.Defaults.enableAutoCaptureRemoteConfig,
+        optOut: Bool = Configuration.Defaults.optOut,
+        offline: Bool? = false,
+        networkTrackingOptions: NetworkTrackingOptions = Configuration.Defaults.networkTrackingOptions,
+        interactionsOptions: InteractionsOptions = Configuration.Defaults.interactionsOptions,
+        enableDiagnostics: Bool = Configuration.Defaults.enableDiagnostics,
+        enableRequestBodyCompression: Bool = Configuration.Defaults.enableRequestBodyCompression,
+        userId: String? = nil,
+        deviceId: String? = nil
     ) {
+        self.optOut = optOut
+        self.offline = offline
+        self.networkTrackingOptions = networkTrackingOptions
+        self.interactionsOptions = interactionsOptions
+        self.enableDiagnostics = enableDiagnostics
+        self.enableRequestBodyCompression = enableRequestBodyCompression
+        self.userId = userId
+        self.deviceId = deviceId
         self.flushQueueSize = flushQueueSize
         self.flushIntervalMillis = flushIntervalMillis
         self.storageProvider = storageProvider
@@ -59,6 +75,15 @@ public struct AnalyticsConfig {
     }
 
     // MARK: Public
+
+    public let optOut: Bool
+    public let offline: Bool?
+    public let networkTrackingOptions: NetworkTrackingOptions
+    public let interactionsOptions: InteractionsOptions
+    public let enableDiagnostics: Bool
+    public let enableRequestBodyCompression: Bool
+    public let userId: String?
+    public let deviceId: String?
 
     public let flushQueueSize: Int
     public let flushIntervalMillis: Int
@@ -89,12 +114,14 @@ extension Configuration {
         serverZone: AmplitudeCore.ServerZone,
         instanceName: String,
         analyticsConfig: AnalyticsConfig,
-        logger: any Logger
+        logger: any Logger,
+        httpClient: (any HttpClient)? = nil
     ) {
         self.init(apiKey: apiKey,
                   flushQueueSize: analyticsConfig.flushQueueSize,
                   flushIntervalMillis: analyticsConfig.flushIntervalMillis,
                   instanceName: instanceName,
+                  optOut: analyticsConfig.optOut,
                   storageProvider: analyticsConfig.storageProvider,
                   identifyStorageProvider: analyticsConfig.identifyStorageProvider,
                   loggerProvider: logger,
@@ -115,6 +142,14 @@ extension Configuration {
                   identifyBatchIntervalMillis: analyticsConfig.identifyBatchIntervalMillis,
                   maxQueuedEventCount: analyticsConfig.maxQueuedEventCount,
                   migrateLegacyData: analyticsConfig.migrateLegacyData,
-                  enableAutoCaptureRemoteConfig: analyticsConfig.enableAutoCaptureRemoteConfig)
+                  offline: analyticsConfig.offline,
+                  networkTrackingOptions: analyticsConfig.networkTrackingOptions,
+                  enableAutoCaptureRemoteConfig: analyticsConfig.enableAutoCaptureRemoteConfig,
+                  interactionsOptions: analyticsConfig.interactionsOptions,
+                  enableDiagnostics: analyticsConfig.enableDiagnostics,
+                  enableRequestBodyCompression: analyticsConfig.enableRequestBodyCompression,
+                  userId: analyticsConfig.userId,
+                  deviceId: analyticsConfig.deviceId,
+                  httpClient: httpClient)
     }
 }
