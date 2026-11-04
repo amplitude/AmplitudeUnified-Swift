@@ -35,7 +35,6 @@ public struct AnalyticsConfig {
         migrateLegacyData: Bool = Configuration.Defaults.migrateLegacyData,
         enableAutoCaptureRemoteConfig: Bool = Configuration.Defaults.enableAutoCaptureRemoteConfig,
         optOut: Bool = Configuration.Defaults.optOut,
-        logLevel: LogLevelEnum = Configuration.Defaults.logLevel,
         offline: Bool? = false,
         networkTrackingOptions: NetworkTrackingOptions = Configuration.Defaults.networkTrackingOptions,
         interactionsOptions: InteractionsOptions = Configuration.Defaults.interactionsOptions,
@@ -45,7 +44,6 @@ public struct AnalyticsConfig {
         deviceId: String? = nil
     ) {
         self.optOut = optOut
-        self.logLevel = logLevel
         self.offline = offline
         self.networkTrackingOptions = networkTrackingOptions
         self.interactionsOptions = interactionsOptions
@@ -79,7 +77,6 @@ public struct AnalyticsConfig {
     // MARK: Public
 
     public let optOut: Bool
-    public let logLevel: LogLevelEnum
     public let offline: Bool?
     public let networkTrackingOptions: NetworkTrackingOptions
     public let interactionsOptions: InteractionsOptions
@@ -127,7 +124,6 @@ extension Configuration {
                   optOut: analyticsConfig.optOut,
                   storageProvider: analyticsConfig.storageProvider,
                   identifyStorageProvider: analyticsConfig.identifyStorageProvider,
-                  logLevel: analyticsConfig.logLevel,
                   loggerProvider: logger,
                   minIdLength: analyticsConfig.minIDLength,
                   partnerId: analyticsConfig.partnerID,

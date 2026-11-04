@@ -36,14 +36,13 @@ class AmplitudeUnifiedTests: XCTestCase {
         let interactions = InteractionsOptions(rageClick: .init(enabled: false), deadClick: .init(enabled: false))
         let network = NetworkTrackingOptions(captureRules: [], ignoreHosts: ["ignored.example"], ignoreAmplitudeRequests: false)
         let config = AnalyticsConfig(autocapture: [], migrateLegacyData: false,
-                                     enableAutoCaptureRemoteConfig: false, optOut: true, logLevel: .error,
+                                     enableAutoCaptureRemoteConfig: false, optOut: true,
                                      offline: true, networkTrackingOptions: network, interactionsOptions: interactions,
                                      enableDiagnostics: false, enableRequestBodyCompression: true,
                                      userId: "initial-user", deviceId: "initial-device")
         let configuration = Configuration(apiKey: "test-key", serverZone: .EU, instanceName: UUID().uuidString,
                                           analyticsConfig: config, logger: ConsoleLogger())
         XCTAssertTrue(configuration.optOut)
-        XCTAssertEqual(configuration.logLevel, .error)
         XCTAssertEqual(configuration.offline, true)
         XCTAssertTrue(configuration.interactionsOptions === interactions)
         XCTAssertEqual(configuration.networkTrackingOptions.ignoreHosts, ["ignored.example"])
