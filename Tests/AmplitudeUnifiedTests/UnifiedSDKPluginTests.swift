@@ -12,7 +12,7 @@ import XCTest
 class UnifiedSDKPluginTests: XCTestCase {
 
     func testInjectsLibraryName() throws {
-        let amplitude = Amplitude(apiKey: "", instanceName: UUID().uuidString,
+        let amplitude = Amplitude(apiKey: "", instanceName: "testInjectsLibraryName",
                                   analyticsConfig: .init(autocapture: [],
                                                          enableAutoCaptureRemoteConfig: false),
                                   experimentConfig: .init(fetchOnStart: false, pollOnStart: false,
