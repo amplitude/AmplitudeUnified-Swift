@@ -42,13 +42,6 @@ jobs:
         run: |
           sudo xcode-select -switch /Applications/Xcode_26.0.app
 
-      - name: Install Apple platform SDKs
-        run: |
-          xcrun simctl list > /dev/null
-          for platform in iOS tvOS watchOS visionOS; do
-            sudo xcodebuild -downloadPlatform "$platform"
-          done
-
       - name: Validate Podfile
         if: ${{ !inputs.skipCocoaPods }}
         run: pod lib lint --allow-warnings
