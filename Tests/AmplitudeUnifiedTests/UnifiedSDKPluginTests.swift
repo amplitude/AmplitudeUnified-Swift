@@ -11,20 +11,23 @@ import XCTest
 
 class UnifiedSDKPluginTests: XCTestCase {
 
-    func testInjectsLibraryName() {
-        let amplitude = Amplitude(apiKey: "",
+    func testInjectsLibraryName() throws {
+        let amplitude = Amplitude(apiKey: "", instanceName: "testInjectsLibraryName",
                                   analyticsConfig: .init(autocapture: [],
-                                                         enableAutoCaptureRemoteConfig: false))
+                                                         enableAutoCaptureRemoteConfig: false),
+                                  experimentConfig: .init(fetchOnStart: false, pollOnStart: false,
+                                                          automaticFetchOnAmplitudeIdentityChange: false))
         let eventInterceptorPlugin = EventInterceptorPlugin()
         amplitude.add(plugin: eventInterceptorPlugin)
         let eventType = "Test"
         amplitude.track(eventType: eventType)
 
-        wait(for: [eventInterceptorPlugin.didTrackEventExpectation], timeout: 0.1)
+        // Initialization and event processing run asynchronously and can be slow on CI.
+        wait(for: [eventInterceptorPlugin.didTrackEventExpectation], timeout: 5)
 
         XCTAssertEqual(eventInterceptorPlugin.events.count, 1)
 
-        let event = eventInterceptorPlugin.events[0]
+        let event = try XCTUnwrap(eventInterceptorPlugin.events.first)
         XCTAssertEqual(event.eventType, eventType)
         XCTAssertEqual(event.library, "amplitude-swift-unified/\(Constants.unifiedSDKVersion)-\(Constants.SDK_LIBRARY)/\(Constants.SDK_VERSION)")
     }
