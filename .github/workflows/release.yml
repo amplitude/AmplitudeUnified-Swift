@@ -42,6 +42,12 @@ jobs:
         run: |
           sudo xcode-select -switch /Applications/Xcode_26.0.app
 
+      - name: Install required platforms
+        run: |
+          for platform in tvOS watchOS visionOS; do
+            sudo xcodebuild -downloadPlatform "$platform"
+          done
+
       - name: Validate Podfile
         if: ${{ !inputs.skipCocoaPods }}
         run: pod lib lint --allow-warnings
