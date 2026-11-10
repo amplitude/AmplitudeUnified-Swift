@@ -1,4 +1,4 @@
-// swift-tools-version: 5.9
+// swift-tools-version: 6.2
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -7,7 +7,7 @@ let package = Package(
     name: "AmplitudeUnified",
     platforms: [
         .macOS(.v10_15),
-        .iOS(.v13),
+        .iOS(.v15),
         .tvOS(.v13),
         .watchOS(.v7),
         .visionOS(.v1),
@@ -46,5 +46,6 @@ let package = Package(
                 .target(name: "AmplitudeUnified"),
             ]
         ),
-    ]
+    ],
+    swiftLanguageModes: [.v5]
 )
