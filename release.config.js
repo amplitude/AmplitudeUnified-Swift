@@ -32,12 +32,12 @@ module.exports = {
             "countMatches": true
           },
           {
-            "files": ["sources/AmplitudeUnified/Constants.swift"],
+            "files": ["Sources/AmplitudeUnified/Constants.swift"],
             "from": "unifiedSDKVersion: String = \".*\"",
             "to": "unifiedSDKVersion: String = \"${nextRelease.version}\"",
             "results": [
               {
-                "file": "sources/AmplitudeUnified/Constants.swift",
+                "file": "Sources/AmplitudeUnified/Constants.swift",
                 "hasChanged": true,
                 "numMatches": 1,
                 "numReplacements": 1
@@ -49,7 +49,7 @@ module.exports = {
       }
     ],
     ["@semantic-release/git", {
-      "assets": ["AmplitudeUnified.podspec", "CHANGELOG.md", "sources/AmplitudeUnified/Constants.swift"],
+      "assets": ["AmplitudeUnified.podspec", "CHANGELOG.md", "Sources/AmplitudeUnified/Constants.swift"],
       "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
     }],
       ...(process.env.SKIP_COCOAPODS === "true" ? [] : [["@semantic-release/exec", {
