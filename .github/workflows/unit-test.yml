@@ -12,42 +12,69 @@ jobs:
     name: Unit ${{ matrix.platform }} - Xcode ${{ matrix.xcode }} - OS ${{ matrix.test-destination-os }}
     runs-on: ${{ matrix.runs-on }}
 
+    timeout-minutes: 60
+
     strategy:
       fail-fast: false
       matrix:
+        # Oldest/newest preinstalled runtimes on the selected runner images.
         include:
           - runs-on: macos-15
             platform: iOS
-            xcode: 16.4
+            xcode: "26.0"
+            test-destination-os: "18.5"
             device: "iPhone 16"
-            test-destination-os: latest
+
+          - runs-on: macos-26
+            platform: iOS
+            xcode: "26.0"
+            test-destination-os: "26.5"
+            device: "iPhone 17"
 
           - runs-on: macos-15
-            platform: iOS
-            xcode: 16.4
-            test-destination-os: 18.5
-            device: "iPhone 16"
-          
-          - runs-on: macos-15
             platform: macOS
-            xcode: 16.4
+            xcode: "26.0"
+            test-destination-os: "15"
+
+          - runs-on: macos-26
+            platform: macOS
+            xcode: "26.0"
+            test-destination-os: "26"
 
           - runs-on: macos-15
             platform: tvOS
-            xcode: 16.4
-            test-destination-os: latest
+            xcode: "26.0"
+            test-destination-os: "18.5"
+            device: "Apple TV"
+
+          - runs-on: macos-26
+            platform: tvOS
+            xcode: "26.0"
+            test-destination-os: "26.5"
             device: "Apple TV"
 
           - runs-on: macos-15
             platform: watchOS
-            xcode: 16.4
-            test-destination-os: latest
+            xcode: "26.0"
+            test-destination-os: "11.5"
             device: "Apple Watch Series 10 (42mm)"
+
+          - runs-on: macos-26
+            platform: watchOS
+            xcode: "26.0"
+            test-destination-os: "26.5"
+            device: "Apple Watch Series 11 (42mm)"
 
           - runs-on: macos-15
             platform: visionOS
-            xcode: 16.4
-            test-destination-os: 2.5
+            xcode: "26.0"
+            test-destination-os: "2.3"
+            device: "Apple Vision Pro"
+
+          - runs-on: macos-26
+            platform: visionOS
+            xcode: "26.0"
+            test-destination-os: "26.5"
             device: "Apple Vision Pro"
     steps:
       - name: Checkout
@@ -58,6 +85,11 @@ jobs:
       - name: List Simulators
         run: |
           xcrun simctl list
+      # Xcode 26.0 requires its matching platform runtime even when testing another OS.
+      # macos-15 already includes iOS 26.0; macOS needs no additional platform.
+      - name: Install required platform
+        if: matrix.platform != 'macOS' && (matrix.runs-on == 'macos-26' || matrix.platform != 'iOS')
+        run: sudo xcodebuild -downloadPlatform '${{ matrix.platform }}'
       - name: List Project Configuration
         run: |
           xcodebuild -list
