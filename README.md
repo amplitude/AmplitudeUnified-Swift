@@ -9,6 +9,8 @@
 
 A single interface for Amplitude Analytics, Experiment, and Session Replay (iOS only). For full documentation, see [Unified SDK for Swift](https://amplitude.com/docs/sdks/analytics/ios/unified-sdk).
 
+Requires Xcode 26.0+ (Swift tools 6.2+) and iOS 15+ when targeting iOS. Swift 5 language mode is retained.
+
 ## Setup
 
 **Swift Package Manager:** In Xcode, **File** → **Swift Package Manager** → **Add Package Dependency**, then add:
