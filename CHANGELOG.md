@@ -1,3 +1,10 @@
+## [0.1.1](https://github.com/amplitude/AmplitudeUnified-Swift/compare/v0.1.0...v0.1.1) (2026-11-25)
+
+
+### Bug Fixes
+
+* **release:** stamp unifiedSDKVersion in release commits ([#51](https://github.com/amplitude/AmplitudeUnified-Swift/issues/51)) ([1e66bd1](https://github.com/amplitude/AmplitudeUnified-Swift/commit/1e66bd16005d5dabe53dcef3a740edfc7ec1fbf2))
+
 # [0.1.0](https://github.com/amplitude/AmplitudeUnified-Swift/compare/v0.0.4...v0.1.0) (2026-11-04)
 
 

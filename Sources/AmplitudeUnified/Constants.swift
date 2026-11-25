@@ -9,5 +9,5 @@ import AmplitudeSwift
 
 extension Constants {
 
-    static let unifiedSDKVersion: String = "0.0.0"
+    static let unifiedSDKVersion: String = "0.1.1"
 }
