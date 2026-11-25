@@ -7,10 +7,6 @@ on:
         description: "Do a dry run to preview instead of a real release"
         required: true
         default: "true"
-      skipCocoaPods:
-        description: "Skip CocoaPods validation and publishing"
-        type: boolean
-        default: false
 
 jobs:
   authorize:
@@ -33,26 +29,9 @@ jobs:
     name: Release
     runs-on: macos-15
     needs: [authorize, run-tests]
-    env:
-      SKIP_COCOAPODS: ${{ inputs.skipCocoaPods }}
     steps:
       - name: Checkout
         uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
-      - name: Set Xcode 26.0
-        run: |
-          sudo xcode-select -switch /Applications/Xcode_26.0.app
-
-      - name: Install required platforms
-        run: |
-          xcrun simctl list > /dev/null
-          for platform in tvOS watchOS visionOS; do
-            sudo xcodebuild -downloadPlatform "$platform"
-          done
-
-      - name: Validate Podfile
-        if: ${{ !inputs.skipCocoaPods }}
-        run: pod lib lint --allow-warnings
-
       - name: Set up Node.js
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
@@ -62,7 +41,6 @@ jobs:
         if: ${{ github.event.inputs.dryRun == 'true'}}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
           GIT_AUTHOR_NAME: amplitude-sdk-bot
           GIT_AUTHOR_EMAIL: amplitude-sdk-bot@users.noreply.github.com
           GIT_COMMITTER_NAME: amplitude-sdk-bot
@@ -75,7 +53,6 @@ jobs:
         if: ${{ github.event.inputs.dryRun == 'false'}}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
           GIT_AUTHOR_NAME: amplitude-sdk-bot
           GIT_AUTHOR_EMAIL: amplitude-sdk-bot@users.noreply.github.com
           GIT_COMMITTER_NAME: amplitude-sdk-bot
