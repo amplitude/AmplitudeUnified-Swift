@@ -18,20 +18,6 @@ module.exports = {
       {
         "replacements": [
           {
-            "files": ["AmplitudeUnified.podspec"],
-            "from": "amplitude_unified_version = \".*\"",
-            "to": "amplitude_unified_version = \"${nextRelease.version}\"",
-            "results": [
-              {
-                "file": "AmplitudeUnified.podspec",
-                "hasChanged": true,
-                "numMatches": 1,
-                "numReplacements": 1
-              }
-            ],
-            "countMatches": true
-          },
-          {
             "files": ["Sources/AmplitudeUnified/Constants.swift"],
             "from": "unifiedSDKVersion: String = \".*\"",
             "to": "unifiedSDKVersion: String = \"${nextRelease.version}\"",
@@ -49,11 +35,8 @@ module.exports = {
       }
     ],
     ["@semantic-release/git", {
-      "assets": ["AmplitudeUnified.podspec", "CHANGELOG.md", "Sources/AmplitudeUnified/Constants.swift"],
+      "assets": ["CHANGELOG.md", "Sources/AmplitudeUnified/Constants.swift"],
       "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
     }],
-      ...(process.env.SKIP_COCOAPODS === "true" ? [] : [["@semantic-release/exec", {
-        "publishCmd": "pod trunk push AmplitudeUnified.podspec --allow-warnings",
-      }]]),
-    ],
-  }
+  ],
+}

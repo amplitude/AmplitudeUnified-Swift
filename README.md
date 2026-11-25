@@ -19,12 +19,6 @@ Requires Xcode 26.0+ (Swift tools 6.2+) and iOS 15+ when targeting iOS. Swift 5 
 https://github.com/amplitude/AmplitudeUnified-Swift
 ```
 
-**CocoaPods:** Add to your `Podfile` and run `pod install`:
-
-```ruby
-pod 'AmplitudeUnified', '~> 0.0'
-```
-
 ## Basic usage
 
 ```swift
